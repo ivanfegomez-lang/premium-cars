@@ -1,0 +1,90 @@
+<div class="admin-container">
+
+  <h2>Panel Administrador</h2>
+
+  <div class="admin-form">
+
+    <input
+      type="text"
+      [(ngModel)]="marca"
+      placeholder="Marca">
+
+    <input
+      type="text"
+      [(ngModel)]="modelo"
+      placeholder="Modelo">
+
+    <input
+      type="number"
+      [(ngModel)]="precio"
+      placeholder="Precio">
+
+    <input
+      type="text"
+      [(ngModel)]="imagen"
+      placeholder="URL Imagen">
+
+    <textarea
+      [(ngModel)]="descripcion"
+      placeholder="Descripción">
+    </textarea>
+
+    <button (click)="crearVehiculo()">
+      Crear Vehículo
+    </button>
+
+  </div>
+
+  <h3>Vehículos actuales</h3>
+
+  <div class="vehicles-grid">
+
+    <div
+      class="card vehicle-card"
+      *ngFor="let v of vehiculos">
+
+      <img
+        [src]="v.imagen"
+        alt="vehiculo">
+
+      <div class="card-content">
+
+        <input
+          [(ngModel)]="v.marca">
+
+        <input
+          [(ngModel)]="v.modelo">
+
+        <input
+          type="number"
+          [(ngModel)]="v.precio">
+
+        <input
+          [(ngModel)]="v.imagen">
+
+        <textarea
+          [(ngModel)]="v.descripcion">
+        </textarea>
+
+        <div class="admin-buttons">
+
+          <button
+            (click)="actualizarVehiculo(v)">
+            Actualizar
+          </button>
+
+          <button
+            class="delete-btn"
+            (click)="eliminarVehiculo(v._id)">
+            Eliminar
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

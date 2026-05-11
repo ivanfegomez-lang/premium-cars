@@ -1,0 +1,61 @@
+<div class="container">
+
+  <h2>Vehículos Disponibles</h2>
+
+  <div class="vehicles-grid">
+
+    <div
+      class="card vehicle-card"
+      *ngFor="let v of vehiculos; let i = index">
+
+      <div style="display:none">
+        {{ fechas[v._id] = fechas[v._id] || {} }}
+      </div>
+
+      <img
+        [src]="v.imagen"
+        alt="vehiculo">
+
+      <div class="card-content">
+
+        <h3>
+          {{ v.marca }} - {{ v.modelo }}
+        </h3>
+
+        <p>
+          {{ v.descripcion }}
+        </p>
+
+        <p>
+          Precio por día: ${{ v.precio }}
+        </p>
+
+        <input
+          type="date"
+          [min]="today"
+          [(ngModel)]="fechas[v._id].fechaInicio">
+
+        <br><br>
+
+        <input
+          type="date"
+          [min]="fechas[v._id].fechaInicio"
+          [(ngModel)]="fechas[v._id].fechaFin">
+
+        <br><br>
+        <p>
+          Total:
+          ${{ calcularTotal(v) }}
+          </p>
+
+        <button (click)="reservar(v._id)">
+          Reservar
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

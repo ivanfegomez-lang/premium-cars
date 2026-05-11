@@ -2,8 +2,9 @@ require("dotenv").config({ path: "./.env" });
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const empleadosRoutes = require("./routes/empleados");
-const departamentosRoutes = require("./routes/departamentos");
+const vehiculosRoutes = require("./routes/vehiculos");
+const usuariosRoutes = require("./routes/usuarios");
+const reservasRoutes = require("./routes/reservas");
 
 
 const app = express();
@@ -11,6 +12,7 @@ const app = express();
 // middlewares
 app.use(cors());
 app.use(express.json());
+app.use("/reservas", reservasRoutes);
 
 // conexion a mongodb
 mongoose.connect(process.env.MONGO_URI)
@@ -21,8 +23,9 @@ mongoose.connect(process.env.MONGO_URI)
 app.get("/", (req, res) => {
     res.send("Api Funcionando")
 });
-app.use("/empleados", empleadosRoutes);
-app.use("/departamentos", departamentosRoutes);
+
+app.use("/vehiculos", vehiculosRoutes);
+app.use("/usuarios", usuariosRoutes);
 
 //  levantar server
 app.listen(process.env.PORT, () => {

@@ -1,0 +1,95 @@
+<div class="container">
+
+  <h2>Mis Reservas</h2>
+
+  <div class="vehicles-grid">
+
+    <div
+      class="card vehicle-card"
+      *ngFor="let r of reservas">
+
+      <img
+        [src]="r.vehiculo?.imagen"
+        alt="vehiculo">
+
+      <div class="card-content">
+
+        <h3>
+          {{ r.vehiculo?.marca }}
+          {{ r.vehiculo?.modelo }}
+        </h3>
+
+        <p>
+          Cliente:
+          {{ r.usuario?.nombre }}
+        </p>
+        <p>
+          Teléfono:
+          {{ r.usuario?.telefono }}
+        </p>
+
+        <p>
+          Inicio:
+          {{ r.fechaInicio | date:'mediumDate' }}
+        </p>
+
+        <p>
+          Fin:
+          {{ r.fechaFin | date:'mediumDate' }}
+        </p>
+
+        <div *ngIf="isAdmin(); else estadoTexto">
+
+  <label>
+    Estado:
+  </label>
+
+  <select
+    [(ngModel)]="r.estado">
+
+    <option value="activa">
+      Activa
+    </option>
+
+    <option value="completada">
+      Completada
+    </option>
+
+    <option value="cancelada">
+      Cancelada
+    </option>
+
+  </select>
+
+  <br><br>
+
+  <button
+    (click)="actualizarEstado(r)">
+
+    Guardar Estado
+
+  </button>
+
+</div>
+
+<ng-template #estadoTexto>
+
+  <p>
+    Estado:
+    {{ r.estado }}
+  </p>
+
+</ng-template>
+
+        <p>
+          Total:
+          ${{ r.precioTotal }}
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

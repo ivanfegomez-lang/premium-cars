@@ -1,0 +1,85 @@
+<div class="auth-container">
+
+  <div class="auth-card">
+
+    <h2 *ngIf="!isRegister">
+      Bienvenido
+    </h2>
+
+    <h2 *ngIf="isRegister">
+      Crear Cuenta
+    </h2>
+
+    <p class="auth-subtitle">
+      Premium Cars Rental
+    </p>
+
+    <!-- LOGIN -->
+
+    <form *ngIf="!isRegister"
+          (submit)="login()">
+
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="Correo electrónico">
+
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Contraseña">
+
+      <button type="submit">
+        Iniciar Sesión
+      </button>
+
+    </form>
+
+    <!-- REGISTER -->
+
+    <form *ngIf="isRegister"
+          (submit)="register()">
+
+      <input
+        type="text"
+        [(ngModel)]="nombre"
+        name="nombre"
+        placeholder="Nombre">
+
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="Correo electrónico">
+      <input
+        type="text"
+        [(ngModel)]="telefono"
+        name="telefono"
+        placeholder="Teléfono">
+
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Contraseña">
+
+      <button type="submit">
+        Crear Cuenta
+      </button>
+
+    </form>
+
+    <button class="switch-btn"
+            (click)="isRegister = !isRegister">
+
+      {{ isRegister
+          ? 'Ya tengo cuenta'
+          : 'Crear cuenta' }}
+
+    </button>
+
+  </div>
+
+</div>
